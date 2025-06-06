@@ -1,0 +1,144 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background: hsl(210, 46%, 95%);
+  min-height: 100vh;
+  color: hsl(217, 19%, 35%);
+  font-family: Manrope, Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+main {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.card {
+  border-radius: 10px;
+  overflow: hidden;
+  -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+  background-color: white;
+
+  img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+  }
+
+  .meta {
+    padding: 30px;
+  }
+
+  h1 {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 0 1rem 0;
+  }
+
+  p {
+    margin: 0 0 1rem 0;
+  }
+
+  .post-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+
+  .author {
+    display: flex;
+    /* justify-content: start; */
+    gap: 20px;
+
+    img {
+      width: 40px;
+      border-radius: 50%;
+      aspect-ratio: 1/1;
+    }
+
+    .name {
+      font-weight: bold;
+    }
+
+    .date {
+      color: hsl(212, 23%, 69%);
+    }
+  }
+}
+
+.share-btn {
+  border: none;
+  background-color: hsl(210, 46%, 95%);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: block;
+
+  img {
+    object-fit: contain;
+    aspect-ratio: 1/1;
+    width: 90%;
+  }
+
+  &:hover + .share {
+    display: block;
+  }
+}
+
+.share {
+  margin: 0;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 20px;
+  background-color: hsl(217, 19%, 35%, 1);
+  color: hsl(212, 23%, 69%);
+  text-transform: uppercase;
+  letter-spacing: 0.5ch;
+  padding: 20px 30px;
+  /* width: calc(100% + 60px); */
+  /* position: absolute; */
+  bottom: 0;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+
+  /* pour popper js */
+  width: 100%;
+  max-width: 100%;
+
+  ul {
+    display: grid;
+    grid-template-columns: repeat(3, 20px);
+    gap: 20px;
+
+    img {
+      aspect-ratio: 1/1;
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .share-btn {
+    margin-left: auto;
+}
+}
+
+
+#tooltip {
+  /* ... */
+  display: none;
+}
+
+#tooltip[data-show] {
+  display: block;
+}
