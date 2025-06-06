@@ -1,54 +1,32 @@
 const shareButton = document.querySelector(".share-btn");
-const closeShareButton = document.querySelector("#close");
-const card = document.querySelector(".card");
-const meta = document.querySelector(".meta");
-const tooltip = document.querySelector("#tooltip");
+const author = document.querySelector(".author");
+const share = document.querySelector(".share");
 
-// Crée une seule instance Popper
-const popperInstance = Popper.createPopper(shareButton, tooltip, {
-  placement: "top",
-  modifiers: [
-    {
-      name: 'setWidthAndCenter',
-      enabled: true,
-      phase: 'beforeWrite',
-      requires: ['computeStyles'],
-      fn({ state }) {
-        const cardRect = card.getBoundingClientRect();
-        console.log("cardRect = ", cardRect);
-        const buttonRect = shareButton.getBoundingClientRect();
-        const a = cardRect.bottom - buttonRect.top;
+let largeur = window.innerWidth;
+const mediaQuery = window.matchMedia("(min-width: 601px)");
+mediaQuery.addEventListener("change", handleChange);
 
-        state.styles.popper.transform += `translateX(${-cardRect.x}px) translateY(${a}px)`;
-      }
-    }
-]
-});
-
-// Fonction pour ajuster la largeur de la tooltip à celle de la card
-function syncTooltipWidth() {
-  const cardRect = card.getBoundingClientRect();
-  tooltip.style.width = cardRect.width + "px";
-}
-
-// Toggle l'affichage de la tooltip au clic
-shareButton.addEventListener("click", () => {
-  syncTooltipWidth();
-  tooltip.toggleAttribute("data-show");
-  popperInstance.update();
-});
-
-closeShareButton.addEventListener("click", () => {
-  syncTooltipWidth();
-  tooltip.toggleAttribute("data-show");
-  popperInstance.update();
-});
-
-// (Optionnel) Adapter la largeur si la fenêtre est redimensionnée
-window.addEventListener("resize", () => {
-  if (tooltip.hasAttribute("data-show")) {
-    syncTooltipWidth();
-    popperInstance.update();
+shareButton.addEventListener("click", (e) => {
+  if (window.innerWidth <= 600) {
+    author.classList.toggle("hide");
+    share.classList.toggle("hide");
+  } else {
+    share.classList.toggle("hide");
   }
 });
 
+function handleChange(e) {
+  if (e.matches) {
+    console.log("> 600");
+    if (!share.classList.contains("hide")) {
+      author.classList.remove("hide");
+    }
+  } else {
+    console.log("<= 600");
+    if (!share.classList.contains("hide")) {
+      author.classList.add("hide");
+    }
+  }
+}
+
+console.log("Largeur du viewport :", largeur);
