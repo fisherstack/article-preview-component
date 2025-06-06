@@ -86,6 +86,7 @@ main {
 }
 
 .share {
+  position: absolute;
   margin: 0 -30px -20px -30px;
   display: flex;
   justify-content: start;
